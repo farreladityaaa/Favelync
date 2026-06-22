@@ -12,7 +12,7 @@ Write-Host ""
 
 # Step 1: Copy latest files from workspace to git repo
 Write-Host "[1/3] Copying latest changes from workspace..." -ForegroundColor Yellow
-robocopy $workspace $gitRepo /E /XD node_modules .next .git /XF "*.tsbuildinfo" /NFL /NDL /NJH /NJS | Out-Null
+robocopy $workspace $gitRepo /E /XD node_modules .next .git /XF "*.tsbuildinfo" "package.json" "package-lock.json" /NFL /NDL /NJH /NJS | Out-Null
 Write-Host "      Done." -ForegroundColor Green
 
 # Step 2: Stage and commit
