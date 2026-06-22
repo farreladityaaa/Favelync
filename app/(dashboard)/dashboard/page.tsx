@@ -244,7 +244,7 @@ export default function DashboardPage() {
                   tickFormatter={(val) => `${(val / 1000000).toFixed(0)}M`}
                 />
                 <Tooltip 
-                  formatter={(value: number) => formatCurrency(value)}
+                  formatter={(value) => formatCurrency(value as number)}
                   contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border)', borderRadius: '12px' }} 
                 />
                 <Area type="monotone" dataKey="Nilai" stroke="var(--info)" strokeWidth={3} fillOpacity={1} fill="url(#colorNilai)" />
@@ -266,7 +266,7 @@ export default function DashboardPage() {
                 <XAxis type="number" tickFormatter={(val) => `${(val / 1000000).toFixed(1)}M`} tick={{ fill: 'var(--text-muted)', fontSize: 12 }} axisLine={false} tickLine={false} />
                 <YAxis dataKey="name" type="category" width={120} tick={{ fill: 'var(--text-secondary)', fontSize: 12 }} axisLine={false} tickLine={false} />
                 <Tooltip 
-                  formatter={(value: number) => formatCurrency(value)}
+                  formatter={(value) => formatCurrency(value as number)}
                   cursor={{ fill: 'var(--bg-hover)' }}
                   contentStyle={{ backgroundColor: 'var(--bg-card)', borderColor: 'var(--border)', borderRadius: '12px' }} 
                 />

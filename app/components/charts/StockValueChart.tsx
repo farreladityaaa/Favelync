@@ -54,7 +54,7 @@ export function StockValueChart({ data }: StockValueChartProps) {
               color: '#e2e8f0',
               boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)'
             }}
-            formatter={(value: number) => [formatCurrency(value), 'Total Nilai']}
+            formatter={(value) => [formatCurrency(value as number), 'Total Nilai']}
             labelStyle={{ color: '#94a3b8', marginBottom: '4px', fontSize: '12px' }}
           />
           <Area 

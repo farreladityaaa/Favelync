@@ -43,7 +43,7 @@ export function CategoryDonutChart({ data }: CategoryDonutChartProps) {
               color: '#e2e8f0',
               boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)'
             }}
-            formatter={(value: number) => [`${value} Produk`, 'Jumlah']}
+            formatter={(value) => [`${value as number} Produk`, 'Jumlah']}
             itemStyle={{ color: '#e2e8f0' }}
           />
           <Legend 

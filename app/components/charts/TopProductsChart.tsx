@@ -53,7 +53,7 @@ export function TopProductsChart({ data }: TopProductsChartProps) {
               color: '#e2e8f0',
               boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.3)'
             }}
-            formatter={(value: number) => [`${value} unit`, 'Terjual']}
+            formatter={(value) => [`${value as number} unit`, 'Terjual']}
             labelStyle={{ color: '#94a3b8', marginBottom: '4px' }}
           />
           <Bar dataKey="jumlah" radius={[0, 4, 4, 0]} barSize={24}>
