@@ -38,7 +38,16 @@ export default function ProductsPage() {
       }
 
       return matchesSearch && matchesCategory && matchesStatus;
-    }).sort((a, b) => a.name.localeCompare(b.name));
+    }).sort((a, b) => {
+      const statusOrder = { out: 1, low: 2, available: 3 };
+      const statusA = getStockStatus(a.currentStock, a.minimumStock);
+      const statusB = getStockStatus(b.currentStock, b.minimumStock);
+      
+      if (statusOrder[statusA] !== statusOrder[statusB]) {
+        return statusOrder[statusA] - statusOrder[statusB];
+      }
+      return a.name.localeCompare(b.name);
+    });
   }, [products, searchTerm, selectedCategory, selectedStatus]);
 
   const prepareExportData = () => {

@@ -26,7 +26,7 @@ export default function LoginPage() {
       await new Promise(resolve => setTimeout(resolve, 800));
       const user = login(email, password);
       if (user) {
-        router.push('/dashboard');
+        window.location.href = '/dashboard';
       } else {
         setError('Email atau password salah');
       }

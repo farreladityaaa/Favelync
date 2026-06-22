@@ -139,10 +139,26 @@ export function AppProvider({ children }: { children: ReactNode }) {
   // Load from localStorage on mount
   useEffect(() => {
     try {
-      const stored = localStorage.getItem(STORAGE_KEY);
+      const sessionStr = localStorage.getItem('favelync-session');
+      const sessionUser = sessionStr ? JSON.parse(sessionStr) : null;
+      
+      const userId = sessionUser?.id || 'default';
+      const storageKey = `favelync-data-${userId}`;
+      const stored = localStorage.getItem(storageKey);
+      
       if (stored) {
         const parsed = JSON.parse(stored);
-        dispatch({ type: 'SET_STATE', payload: { ...initialState, ...parsed } });
+        dispatch({ type: 'SET_STATE', payload: { ...initialState, ...parsed, currentUser: sessionUser } });
+      } else {
+        const isDemo = sessionUser?.email?.includes('@favelync.id') || userId === 'default';
+        const defaultState = isDemo ? initialState : { 
+          ...initialState, 
+          products: [], 
+          transactions: [], 
+          suppliers: [], 
+          notifications: [] 
+        };
+        dispatch({ type: 'SET_STATE', payload: { ...defaultState, currentUser: sessionUser } });
       }
     } catch {
       // Use default data
@@ -154,8 +170,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (hydrated) {
       try {
+        const userId = state.currentUser?.id || 'default';
+        const storageKey = `favelync-data-${userId}`;
         const toSave = { ...state };
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+        localStorage.setItem(storageKey, JSON.stringify(toSave));
       } catch {
         // Storage full or unavailable
       }
@@ -195,6 +213,7 @@ export function useAuth() {
   const logout = () => {
     dispatch({ type: 'SET_CURRENT_USER', payload: null });
     localStorage.removeItem('favelync-session');
+    window.location.href = '/login';
   };
 
   const restoreSession = () => {
