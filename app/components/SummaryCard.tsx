@@ -41,7 +41,7 @@ export function SummaryCard({
         
         <div className="min-w-0 flex-1">
           <p className="text-xs font-medium text-[#94a3b8] leading-tight mb-1 truncate">{title}</p>
-          <h3 className="text-xl font-bold text-white mono leading-tight">
+          <h3 className="text-lg lg:text-xl font-bold text-white mono leading-tight truncate" title={prefix + new Intl.NumberFormat('id-ID').format(value) + suffix}>
             <CountUp end={value} prefix={prefix} suffix={suffix} decimals={decimals} />
           </h3>
           
