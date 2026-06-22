@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Plus, Search, Filter, Download, Upload, Edit, Trash2, FileText, FileSpreadsheet } from 'lucide-react';
+import { Plus, Search, Filter, Download, Upload, Edit, Trash2, FileText, FileSpreadsheet, Package } from 'lucide-react';
 import { useApp } from '@/app/lib/store';
 import { Product } from '@/app/lib/types';
 import { formatCurrency, getStockStatus, getStockStatusLabel } from '@/app/lib/utils';
